@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+
+<section class="main-content">
+    <h1>Detalle del Producto</h1>
+    <h2>{{ producto.nombre }}</h2>
+    <div class="product-detail">
+        <div class="product-detail-image">
+            <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+        </div>
+        <div class="product-detail-info">
+            <p class="specs">{{ producto.especificaciones|linebreaksbr }}</p>
+            <p class="price">{{ producto.precio }} USD</p>
+            
+            {% if user.is_authenticated %}
+                
+                <form method="POST" action="{% url 'carrito_agregar_item' producto.id %}">{% csrf_token %}
+                    <button type="submit" class="btn-details">Agregar al Carrito</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+</section>
+
+{% endblock variable %}

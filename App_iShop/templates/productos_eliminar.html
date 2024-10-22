@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+    
+    <form class="main-content" action="{% url 'productos_eliminar' producto.id %}" method="POST">{% csrf_token %}
+        <div class="center-buttons">
+            <h1>Seguro que deseas eliminar el registro de {{producto.nombre}}</h1>
+            <!-- Botón de confirmar -->
+            <button type="submit" class="btn agregar">Confirmar</button>
+            <!-- Botón de cancelar que redirige a la lista sin enviar el formulario -->
+            <button type="button" class="btn listar" onclick="window.location.href='{% url 'index' %}'">Cancelar</button>
+        </div>
+    </form>
+    
+{% endblock variable %}

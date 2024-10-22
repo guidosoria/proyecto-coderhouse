@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+<section class="main-content">
+    <h1>Mis Pedidos</h1>
+
+    {% if pedidos %}
+        <div class="product-grid">
+        {% for pedido in pedidos %}
+            <div class="product-card">
+                <div class="product-info">
+                    <h2 style="color: gray;">Pedido #{{ pedido.id }}</h2>
+                    <p class="price"><strong>Total:</strong> ${{ pedido.total }}</p>
+                    <p style="color: gray; font-size: 15px;"><strong>Fecha:</strong> {{ pedido.fecha }}</p>
+                    <a href="{% url 'ver_pedido' pedido.id %}" class="btn btn-details">Ver Detalles</a>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% else %}
+        <p>No has realizado ningún pedido aún.</p>
+    {% endif %}
+</section>
+{% endblock variable %}

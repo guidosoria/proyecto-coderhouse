@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+<section class="main-content">
+    <h1>¡Pedido exitoso!</h1>
+    <p>Tu pedido ha sido registrado. Aquí están los detalles del pedido:</p>
+    <br>
+    <ul class="product-grid">
+    {% for item in pedido.items.all %}
+        <li class="product-card">
+            <div class="product-info">
+                <h2 style="color: gray;">{{ item.producto.nombre }}</h2>
+                <p style="color: gray;">Cantidad: {{ item.cantidad }}</p>
+                <p class="price">${{ item.precio }}</p>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+    <div class="center-buttons">
+        <p><strong>Total:</strong> <strong class="price">${{ pedido.total }}</strong></p>
+    </div>
+    <a href="{% url 'mis_pedidos' %}" class="btn btn-add-product">Ver mis pedidos</a>
+</section>
+{% endblock variable %}

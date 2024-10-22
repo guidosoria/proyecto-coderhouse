@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+<section class="main-content">
+    <h1>Tu Carrito</h1>
+    
+    {% if items %}
+        <div class="product-grid">
+        {% for item in items %}
+            <div class="product-card">
+                <div class="product-info">
+                    <h2 style="color: gray;">{{ item.producto.nombre }}</h2>
+                    <p style="color: gray;">Cantidad: {{ item.cantidad }}</p>
+                    <p class="price">$ {{ item.producto.precio }}</p>
+                    <form method="POST" action="{% url 'eliminar_item' item.id %}">{% csrf_token %}
+                        <button type="submit" class="btn btn-delete">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <div class="center-buttons">
+            <p><strong>Total:</strong> ${{ total }}</p>
+        </div>
+        <form method="POST" action="{% url 'crear_pedido' %}">{% csrf_token %}
+            <button type="submit" class="btn btn-add-product">Realizar Pedido</button>
+        </form>
+    {% else %}
+        <p>Tu carrito está vacío.</p>
+        <a href="{% url 'mis_pedidos' %}" class="btn btn-details">Ver Pedidos</a>
+    {% endif %}
+</section>
+{% endblock variable %}

@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block variable %}
+    <section class="main-content">
+        <h1>{{ usuario.username }}</h1>
+        {% if user.avatar.first %}
+            <img src="{{ user.avatar.first.imagen.url }}" alt="Avatar" width="200" height="200" style="border-radius: 30%;">
+        {% else %}
+            <img src="{% static 'media/img/avatars/default.jpg' %}" alt="Avatar" width="200" height="200" style="border-radius: 30%;">
+        {% endif %}
+        <br>
+        <div class="profile-card">
+            <ul>
+                {% comment %} <li><strong>Usuario: <p style="color: white;">{{usuario.username}}</p></strong></li> {% endcomment %}
+                <li><strong>Nombre: <p style="color: white">{{usuario.first_name}}</p></strong></li>
+                <li><strong>Apellido: <p style="color: white;">{{usuario.last_name}}</p></strong></li>
+                <li><strong>email: <p style="color: white;">{{usuario.email}}</p></strong></li>
+            </ul>
+        </div>
+
+        <div class="profile-actions">
+            <a href="{% url 'cambiar_password' %}" class="btn profile-btn">Restablecer Contraseña</a>
+            <a href="{% url 'editar_perfil' %}" class="btn profile-btn">Editar Informacion</a>
+            <a href="{% url 'avatar' %}" class="btn profile-btn">Cambiar Foto de Perfil</a>
+        </div>
+</section>
+{% endblock variable %}

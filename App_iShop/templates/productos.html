@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+<section class="main-content">
+    <h1>Categorías de Productos</h1>
+    <div class="center-buttons">
+        <a href="{% url 'notebooks' %}" class="btn productos">Notebooks</a>
+        <a href="{% url 'celulares' %}" class="btn productos">Celulares</a>
+        <a href="{% url 'accesorios' %}" class="btn productos">Accesorios</a>
+    </div>
+
+    <div class="search-section">
+        <a href="{% url 'buscar' %}" class="btn buscar">Buscar</a>
+    </div>
+</section>
+{% endblock variable %}

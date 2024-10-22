@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iShop</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'media/img/logo.png' %}" type="image/x-icon">
+</head>
+<body>
+
+<!-- NavBar -->
+<nav class="navbar">
+  <img src="{% static 'media/img/logo.png' %}" alt="Logo" width="50" height="50" style="border-radius: 30%;">
+  <ul class="nav-links">
+    <li><a href="{% url 'index' %}">Inicio</a></li>
+    <li><a href="{% url 'productos' %}">Productos</a></li>
+    <li><a href="{% url 'about' %}">Acerca de</a></li>
+    <li><a href="{% url 'contacto' %}">Contacto</a></li>
+  </ul>
+  
+  {% if user.is_authenticated %}
+  
+    <div class="user-actions">
+      <a href="{% url 'carrito' %}" class="avatar-btn"><img src="{% static 'media/img/carrito.png' %}" alt="Avatar" width="50" height="50" style="border-radius: 30%;"></a>
+      {% if user.avatar.first %}
+        <a href="{% url 'perfil' %}" class="avatar-btn"><img src="{{ user.avatar.first.imagen.url }}" alt="Avatar" width="50" height="50" style="border-radius: 30%;"></a>
+      {% else %}
+        <a href="{% url 'perfil' %}" class="avatar-btn"><img src="{% static 'media/img/avatars/default.jpg' %}" alt="Avatar" width="50" height="50" style="border-radius: 30%;"></a>
+      {% endif %}
+      <form method="post" action="{% url 'logout' %}">{% csrf_token %}
+        <button type="submit" class="logout-btn">Cerrar Sesión</button>
+      </form>
+    </div>
+
+  {% else %}
+
+    <a href="{% url 'login' %}" class="login-btn">Iniciar sesión</a>
+
+  {% endif %}
+  
+</nav>
+
+
+  <!-- Main Content -->
+  
+  {% block variable %}
+  
+    {% if mensaje == 'index' %}
+
+      <section class="main-content">
+          <h1>¡Bienvenido!</h1>
+        <img src="{% static 'media/img/logo.png' %}" alt="Logo" width="200" height="200" style="border-radius: 30%;">
+        <br />
+        <p>La tecnología que conecta tu mundo</p>
+      </section>
+
+    {% else %}
+
+      <section class="main-content">
+        <h1>{{mensaje}}</h1>
+      </section>
+    
+    {% endif %}
+
+  {% endblock variable %}
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 iShop. Proyecto Final de Guido Soria para curso de Python en Coderhouse</p>
+  </footer>
+
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+<section class="main-content">
+    <h1>Detalles del Pedido #{{ pedido.id }}</h1>
+    <p>Fecha: {{ pedido.fecha }}</p>
+
+    <ul>
+    {% for item in items %}
+        <li>{{ item.cantidad }} x {{ item.producto.nombre }} - ${{ item.precio }}</li>
+    {% endfor %}
+    </ul>
+    <p>Total: ${{ pedido.total }}</p>
+
+    <a href="{% url 'mis_pedidos' %}">Volver a mis pedidos</a>
+</section>
+{% endblock variable %}

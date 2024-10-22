@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+
+<section class="main-content">
+    <h1>Resultado de la búsqueda</h1>
+
+    <div class="product-grid">
+        {% for producto in productos %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                </div>
+                <div class="product-info">
+                    <h2 class="name">{{ producto.nombre }}</h2>
+                    <p class="price">{{ producto.precio }} USD</p>
+                    <a href="{% url 'productos_detalle' producto.id %}" class="btn-details">Ver Detalles</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock variable %}

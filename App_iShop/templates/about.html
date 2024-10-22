@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block variable %}
+<section class="main-content">
+    <img src="{% static 'media/img/perfil.jpg' %}" alt="LinkedIn" width="150" height="150" style="border-radius: 30%;">
+    <div class="about-container">
+        <h1>Acerca de Mí</h1>
+        <div class="about-content">
+            <p>
+                ¡Hola! Mi nombre es Guido y soy un apasionado de la tecnología
+            </p>
+            <p>
+                En mi tiempo libre me gusta mucho viajar, hacer deporte y juntarme con amigos y familia
+            </p>
+            <p>
+                En lo profesional, actualmente me encuentro trabajando en una empresa de e-commerce como Network Administrator y estoy en busca de trabajar mis skills Dev, necesarios para continuar progresando en mi carrera profesional</p>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock variable %}

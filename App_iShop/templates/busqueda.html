@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+
+    <section class="main-content">
+        <h1>Buscar un producto</h1>
+        <form action="{% url 'buscar_resultado' %}" method="GET">{% csrf_token %}
+            {{formulario}}
+            <input type="submit" value="Buscar">
+        </form>
+            
+    </section>
+
+{% endblock variable %}

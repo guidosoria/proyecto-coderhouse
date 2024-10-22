@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+
+    <section class="main-content">
+        <h1>Editar-Perfil</h1>
+        <form action="{% url 'editar_perfil' %}" method="POST">{% csrf_token %}            
+            <div style="margin-bottom: 20px;">
+                {{formulario.as_p}}
+            </div>
+            <button type="submit" class="btn-submit">Guardar</button>
+        </form>
+    </section>
+{% endblock variable %}

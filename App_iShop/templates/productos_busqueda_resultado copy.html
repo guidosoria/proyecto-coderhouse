@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+
+    <section class="main-content">
+        <h1>Resultado de Búsqueda</h1>
+        <div>
+        {% for producto in productos  %}
+            <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" width="200" height="200" style="border-radius: 10%;">
+        <p>
+            <a href="{% url 'productos_detalle' producto.id %}" style="color: aliceblue; background-color: chocolate;">
+                {{producto.nombre}} - {{producto.precio}} USD
+            </a>
+        </p>
+            <br>
+            <br>
+        {% endfor %}
+        </div>
+    </section>
+    
+{% endblock variable %}

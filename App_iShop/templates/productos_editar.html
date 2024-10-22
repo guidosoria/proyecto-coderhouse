@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+
+    <section class="main-content">
+        <form action="{% url 'productos_editar' producto.id %}" method="POST">{% csrf_token %}
+
+            {{form.as_p}}
+
+            <input type="submit" value="Enviar">
+            
+        </form>
+    </section>
+
+{% endblock variable %}

@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+
+{% block variable %}
+
+<section class="main-content">
+    <h1>Listado de Notebooks
+        {% if user.is_authenticated and user.is_superuser %}
+        <button class="btn-add-product">
+            <a href="{% url 'agregar_notebook' %}">Agregar</a>
+        </button>
+        {% endif %}
+    </h1>
+
+    <div class="product-grid">
+        {% for producto in productos %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                </div>
+                <div class="product-info">
+                    <h2 class="name">{{ producto.nombre }}</h2>
+                    <p class="price">{{ producto.precio }} USD</p>
+                    <a href="{% url 'productos_detalle' producto.id %}" class="btn-details">Ver Detalles</a>
+                    
+                    {% if user.is_authenticated and user.is_superuser %}
+                    <div class="admin-actions">
+                        <a href="{% url 'productos_editar' producto.id %}" class="btn-edit">Editar</a>
+                        <a href="{% url 'productos_eliminar' producto.id %}" class="btn-delete">Eliminar</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock variable %}
